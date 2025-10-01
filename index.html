@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Материализ — 3/2/1 колонки с тайлами</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <style>
+    main { 
+    padding-top: 1rem; 
+  }
+
+  .card .card-image {
+    overflow: hidden;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  .card .card-image img {
+    width: 100%;
+    display: block;
+    transition: transform .28s ease;
+    will-change: transform;
+  }
+
+  .card:hover .card-image img,
+  .card:focus-within .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card .stretched-link {
+    position: absolute;
+    inset: 0; 
+    z-index: 1;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card[data-href] { 
+    cursor: pointer; 
+    position: relative; 
+  }
+  .card:focus-within { 
+    outline: 2px solid rgba(33,150,243,.55); 
+    outline-offset: 2px; 
+  }
+
+  .card .card-content, 
+  .card .card-image { 
+    position: relative; 
+    z-index: 0; 
+  }
+  </style>
+</head>
+<body class="grey lighten-4">
+  <nav class="grey darken-4">
+    <div class="nav-wrapper container">
+      <a href="#!" class="brand-logo center">PAUL ORLOV</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card hoverable" data-href="/2017/04/27/led-interactive-installation-for-kids/" tabindex="0" aria-label="LED interactive installation for kids.">
+          <div class="card-image">
+            <img src="/img/dltkids.jpg" alt="dlt_spb" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">LED interactive installation for kids.</span>
+            <p>Светодиодные экраны набирают большую популярность в оформлении витрин и художественных инсталляций. Стилистика неоновых подсветок предполагает отрисовку контента прямо на объекте инсталляции. Уход от плоскости привычного компьютерного экрана в…</p>
+          </div>
+          <a class="stretched-link" href="/2017/04/27/led-interactive-installation-for-kids/" aria-hidden="true"></a>
+        </div>
+
+        <div class="card hoverable" data-href="/2017/02/12/hold-a-course-for-sirius/" tabindex="0" aria-label="Sirius">
+          <div class="card-image">
+            <img src="/img/IMG_1015-1.jpg" alt="Sirius" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">Hold a course for Sirius</span>
+            <p>Курс на Сириус! Несмотря на мой скептицизм относительно освоения государственного бюджета в России, я был приятно удивлен тому, как хорошо все оказалось устроено в Сочи. На мой взгляд,…</p>
+          </div>
+          <a class="stretched-link" href="/2017/02/12/hold-a-course-for-sirius/" aria-hidden="true"></a>
+        </div>
+
+        <div class="card hoverable" data-href="/2016/02/04/mrachniy_kefir/" tabindex="0" aria-label="Мрачный кефир 10 лет спустя">
+          <div class="card-image">
+            <img src="/img/DSCN0121_mk.jpg" alt="Мрачный кефир 10 лет спустя" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">Мрачный кефир 10 лет спустя</span>
+            <p>Намеренно оставляю оригинальную аннотацию и форматирование работ для того, чтобы можно было взглянуть на то с чего все начиналось.</p>
+          </div>
+          <a class="stretched-link" href="/2016/02/04/mrachniy_kefir/" aria-hidden="true"></a>
+        </div>
+        
+
+      </div>
+
+      <div class="col s12 m6 l4">
+        <div class="card hoverable" data-href="/2016/11/20/first-interactive-shopwindow-in-st-petersburg/" tabindex="0" aria-label="First interactive shopwindow in St. Petersburg.">
+          <div class="card-image">
+            <img src="/img/2016-11-20_18-53-22.png" alt="First interactive shopwindow in St. Petersburg." />
+          </div>
+          <div class="card-content">
+            <span class="card-title">First interactive shopwindow in St. Petersburg.</span>
+            <p>Этим летом мне удалось выполнить совместно с креативным отделом ДЛТ первую интерактивную витрину в Санкт-Петербурге. Прохожие на Большой Конюшенной улице останавливались, улыбались и открывали рты видя свое изображение…</p>
+          </div>
+          <a class="stretched-link" href="/2016/11/20/first-interactive-shopwindow-in-st-petersburg/" aria-hidden="true"></a>
+        </div>
+
+        <div class="card hoverable" data-href="/2016/03/02/the-plurality/" tabindex="0" aria-label="Plurality">
+          <div class="card-image">
+            <img src="/img/p11.jpg" alt="Plurality" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">The Plurality</span>
+            <p>Красота откровенных моментов завораживает всегда. В сплетении нейронных сетей от нее остаются лишь узлы и связи, связи и узлы. Мы кодируем информацию об окружающей нас красоте в набор…</p>
+          </div>
+          <a class="stretched-link" href="/2016/03/02/the-plurality/" aria-hidden="true"></a>
+        </div>
+
+        <div class="card hoverable" data-href="/2016/02/07/programming-for-artists/" tabindex="0" aria-label="Programming for Artists">
+          <div class="card-image">
+            <img src="/img/IMAG1458.jpg" alt="Programming for Artists" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">Programming for Artists</span>
+            <p>Летом 2015 года мне удалось подготовить к выходу в свет новую книгу, посвященную программированию для художников и дизайнеров. Книга рассматривает среду Processing как одну из самых простых и…</p>
+          </div>
+          <a class="stretched-link" href="/2016/02/07/programming-for-artists/" aria-hidden="true"></a>
+        </div>
+
+      </div>
+
+      <div class="col s12 m6 l4">
+        <div class="card hoverable" data-href="/2016/07/27/vincent-van-gogh-interactive-installation/" tabindex="0" aria-label="Vincent van Gogh. Interactive installation.">
+          <div class="card-image">
+            <img src="/img/Screen-Shot-2016-07-27-at-18.23.21.png" alt="Vincent van Gogh" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">Vincent van Gogh. Interactive installation.</span>
+            <p>Vincent van Gogh’s compositions grow up on a screen in hundreds of elastic particles based on your movements.</p>
+          </div>
+          <a class="stretched-link" href="/2016/07/27/vincent-van-gogh-interactive-installation/" aria-hidden="true"></a>
+        </div>
+
+        <div class="card hoverable" data-href="/2016/03/25/processing-sketch-based-on-histograms-of-iterated-chaotic-functions/" tabindex="0" aria-label="Processing sketch based on histograms of iterated chaotic functions">
+          <div class="card-image">
+            <img src="/img/fyre-000007.png" alt="fyre" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">Processing sketch based on histograms of iterated chaotic functions</span>
+            <p>A few years ago I found a very nice software tool for generation artwork based on histograms of iterated chaotic functions: Fyre. The last version of this tool…</p>
+          </div>
+          <a class="stretched-link" href="/2016/03/25/processing-sketch-based-on-histograms-of-iterated-chaotic-functions/" aria-hidden="true"></a>
+        </div>
+
+         <div class="card hoverable" data-href="/contacts/" tabindex="0" aria-label="Contacts">
+          <div class="card-content">
+            <span class="card-title">Contacts</span>
+          </div>
+          <a class="stretched-link" href="/contacts/" aria-hidden="true"></a>
+        </div>
+
+        
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.card[data-href]');
+      if (card && !e.defaultPrevented) {
+        const url = card.getAttribute('data-href');
+        if (url) window.location.href = url;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const card = document.activeElement?.closest?.('.card[data-href]');
+        if (card) {
+          const url = card.getAttribute('data-href');
+          if (url) window.location.href = url;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

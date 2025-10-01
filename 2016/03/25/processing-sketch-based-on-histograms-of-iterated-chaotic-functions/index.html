@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Processing sketch based on histograms of iterated chaotic functions — PAUL ORLOV</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+    <style>
+        main {
+            padding-top: 1rem;
+        }
+
+        .hero-image {
+            margin-top: 0;
+        }
+
+        .hero-image img {
+            /* width: 100%; */
+            display: block;
+            border-radius: 0;
+        }
+
+        .content {
+            margin-top: 2rem;
+        }
+
+        blockquote {
+            border-left: 5px solid #212121;
+            /* grey darken-4 */
+            padding-left: 1rem;
+        }
+
+        .video-container {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body class="grey lighten-4">
+    <nav class="grey darken-4">
+        <div class="nav-wrapper container">
+            <a href="/" class="brand-logo center">PAUL ORLOV</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-image" style="background-color: #fff; text-align:center;">
+            <img src="/img/fyre-000007.png" alt="Processing sketch based on histograms of iterated chaotic functions" style="display:block; margin:0 auto;"/>
+        </div>
+
+        <div class="content">
+            <h4>Processing sketch based on histograms of iterated chaotic functions</h4>
+            <p>
+                A few years ago I found a very nice software tool for generation artwork based on histograms of iterated chaotic functions: Fyre. The last version of this tool dates from 2011 year. So, I decide to bring this beautiful math to the Processing code.
+<br/>
+The idea of the graphic generation is like this:<br/><br/>
+<code>x' = sin(a * y) - cos(b * x)<br />
+y' = sin(c * x) - cos(d * y)<br />
+</code>
+            </p>
+            
+
+
+            <p>Where x and y are starting coordinates for each point. We could use pixels as points or some more clever objects. Anyway, at the beginning of our composition we have a canvas with pixels with x, y coordinates or we have some list(array) of points with x, y properties of each one. From here I will use points metaphor. Then we want to draw our points. For doing this we have to recalculate coordinates of each point according formula above. A, B, C, D variables are only coefficients, you can play with them as you wish. Well, to concrete, in a formula there is a variable titled x – it is old coordinate, you have to update it to x’. And on the next drawing iteration you will use x’ as old coordinate.</p>
+          
+                <p>
+                    Here the basic example with my comments.
+                </p>
+          
+
+            <p>
+               The class MyE is a simple construction of the 2D point idea. This class has only 2 properties (ore two fields): x and y. Also it has a constructor which takes two arguments: x and y. For what, how do you think? Of course, to use that values for the properties. In the lines 4 and 5 I use term this. just to separate x as a class property with x that is constructor argument. I do it because these two variable look absolutely similar: x and x. If even we do not understand which is which, what does Java compiler?
+            <pre class="brush: java; title: ; notranslate" title="">
+class MyE {
+    float x, y;
+    MyE(float x, float y) {
+        this.x=x;
+        this.y=y;
+    }
+}
+</pre>
+            </p>
+           
+                <p>
+                   I put definition of class MyE to the separate file in a separate Processing tab.
+                   <br/>
+                   The main Processing code is here:
+                   <pre class="brush: java; title: ; notranslate" title="">
+float a = 3.085;
+float b = -1.504;
+float c = 0.111;
+float d = -4.393;
+ 
+ArrayList&lt;MyE&gt; myEs = new ArrayList&lt;MyE&gt;();
+ 
+void setup() {
+  size(500, 500);
+  smooth();
+  noStroke();
+  ellipseMode(CENTER);
+  background(250);
+  fill(0, 5);
+  
+  float step = 1.0f / 500.0f;
+  for(float x = 0; x &lt; 1; x+=step){
+    for(float y = 0; y &lt; 1; y+=step){
+      MyE tmpE = new MyE(x,y);
+      myEs.add(tmpE);
+    }
+  }
+  
+}
+ 
+void draw() {
+  for(MyE tmpE: myEs){
+      float nx = sin(a * tmpE.y) - cos(b * tmpE.x);
+      float ny = sin(c * tmpE.x) - cos(d * tmpE.y);      
+      ellipse(nx*100 + width/2, ny*100 + height/2, 1, 1);
+      tmpE.x = nx;
+      tmpE.y = ny;
+  }  
+}
+ 
+void keyPressed() {
+  if(key=='s'){
+    saveFrame(&quot;fyre-######.png&quot;);
+  }
+}
+</pre>
+                </p>
+           
+
+                <p>We defined our variables a,b,c,d in the 1-4 lines as a float types. Then at the line 6 we create a &#8220;smart&#8221; list of <em>MyE</em> objects. In this list we will store our point &#8212; objects of <em>MyE</em> class. We called this list <em>myEs</em>. The definition of basic <em>setup</em> method(function) starts at the 8th line. The most interesting part is placed from the 16th to the 22th lines. There we create starting coordinates for our points. The trick is that coordinates lie in the <em>o</em> to <em>1</em> interval. We have done it because our update function (at the top of this post) uses <em>sin</em> and <em>cos</em> function, that works with radians. That is why we define a small step for loops in the 16th line. And then at 19th line we create a new point with current coordinates. After this, at the 20th line we use <em>add()</em> method to put our point to the storage <em>myEs</em>.</p>
+<p>The most part of work we have done. Now it is time for art. Following the main idea, we should update coordinates of each points and draw them. At the line 27th we jump into the loop <em>foreach</em>. This loop goes throw our storage point by point without any additional steps or variables. It is very easy: each iteration the variable <em>tmpE</em> links to the next point from the storage. And then the 28th and the 29th lines work for calculating artistic magic! There we apply exactly the same functions as we plan, even if we have no idea how they work. When we get new coordinates, let&#8217;s draw ellipse in the 30th line. And do not forget that coordinates are very small, we have to zoom them. Also do not forget to store our coordinates into the point at the 31th and the 32th lines.</p>
+<p><img class="size-full wp-image-92 aligncenter" src="/img/fyre-000007.png" alt="fyre-000007" width="500" /></p>
+<p>After all you can store your artwork in .png as example. Here is some pictures from this code directly and from the modifications of it. One more thing, you can link you mouse cursor with a,b,c,d variables &#8211; it is very fun.</p>
+<p>All code is available here: <a href="https://github.com/PaulOrlov/processing-1" target="_blank">https://github.com/PaulOrlov/processing-1</a></p>
+<p><img class="size-full wp-image-97 aligncenter" src="/img/fyre-000006.png" alt="fyre-000006" width="500" height="500" /></p>
+<p><img class="aligncenter size-full wp-image-99" src="/img/fyre-000003.png" alt="fyre-000003" width="500" height="500" /></p>
+<p><img class="aligncenter size-full wp-image-101" src="/img/fyre-000004.png" alt="fyre-000004" width="500" height="500" /></p>
+<p><img class="size-full wp-image-103 aligncenter" src="/img/fyreGIF.gif" alt="fyreGIF" width="500" height="500" /></p>
+<p>
+                Created at 03/25/2016
+            </p>
+        </div>
+    </main>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
